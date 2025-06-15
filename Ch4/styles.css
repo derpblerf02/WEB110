@@ -1,0 +1,50 @@
+/* Created by Seth Coulter, June 8, 2025 */
+
+/* Global styles */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #d7c7aa;
+  color: #926f4f;
+  font-size: 16px;
+}
+
+/* Header styles */
+header {
+  background-color: #00602b;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+  color: #ffffff;
+}
+
+/* Headings */
+h2, h3 {
+  color: #342517;
+}
+
+/* Paragraph styles */
+p {
+  color: #230e06;
+  background-color: #ffffff;
+}
+
+/* Highlight class */
+.highlight {
+  font-weight: bold;
+  color: #ee1e28;
+  font-style: italic;
+}
+
+
+/* Specials item class */
+.special-item {
+  background-color: #ffffff;
+}
+
+/* Footer */
+#footer {
+  text-align: center;
+  color: white;
+  background-color: #bb161d;
+}
