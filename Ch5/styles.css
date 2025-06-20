@@ -1,0 +1,100 @@
+/* Created by Seth Coulter, June 20, 2025 */
+
+/* Global styles */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #d7c7aa;
+  color: #926f4f;
+  font-size: 16px;
+}
+
+/* Header styles */
+header {
+  background-color: #00602b;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+  color: #ffffff;
+}
+
+/* Headings */
+h2, h3 {
+  color: #342517;
+}
+
+/* Paragraph styles */
+p {
+  color: #230e06;
+  background-color: #ffffff;
+}
+
+/* Highlight class */
+.highlight {
+  font-weight: bold;
+  color: #ee1e28;
+  font-style: italic;
+}
+
+
+/* Specials item class */
+.special-item {
+  background-color: #ffffff;
+}
+
+/* Footer */
+#footer {
+  text-align: center;
+  color: white;
+  background-color: #bb161d;
+}
+
+/* Navigation bar */
+nav {
+  height: 35px;
+}
+
+/* Navigation links */
+nav a:link {
+  color: #8b1010;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  background-color: #000;
+  color: #fff;
+}
+
+nav a:visited {
+  color: #00602b;
+  background-color: #fff;
+}
+
+/* Main content area */
+main {
+  font-weight: bold;
+  background-image: url(background.png);
+  background-repeat: repeat-x;
+}
+
+
+/* Image sizing in the main wireframe area */
+main img {
+  display: block;       
+  width: 35%;          
+  height: auto;        
+  margin: 1em 0;       
+}
+
+
+/* Image sizing on the Specials page */
+.special-item img {
+  display: block;       
+  width: 35%;           
+  height: auto;
+  margin: 0.5em 0;     
+}
+
