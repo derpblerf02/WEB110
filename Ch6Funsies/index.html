@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exploring the Universe</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Starfield Canvas -->
+  <div id="stars-background"></div>
+  <div class="blur-overlay"></div>
+
+  <!-- Cosmic Header -->
+  <header class="glass-header" data-aos="fade-down">
+    <h1>Exploring the Universe</h1>
+    <p>A reimagined journey across the cosmos</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="https://apod.nasa.gov/apod/astropix.html" target="_blank" rel="noopener">
+        Astronomy Photo of the Day
+      </a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Image Card -->
+  <section class="glass-card hero" data-aos="zoom-in">
+    <img src="planets.jpg" alt="Planets of the Solar System" />
+    <h2>Planets</h2>
+    <p>
+      Planets are celestial bodies orbiting stars. They come in a variety of compositions—from rocky terrestrials like Earth to gas giants like Jupiter.
+    </p>
+    <ul>
+      <li>Mercury</li>
+      <li>Venus</li>
+      <li>Earth</li>
+      <li>Mars</li>
+      <li>Jupiter</li>
+      <li>Saturn</li>
+      <li>Uranus</li>
+      <li>Neptune</li>
+    </ul>
+  </section>
+
+  <!-- Card Grid -->
+  <main class="card-grid">
+    <section class="glass-card" data-aos="fade-up">
+      <h2>Stars</h2>
+      <img src="stars.jpg" alt="Stars" />
+      <p>
+        Stars are massive, luminous spheres of plasma held together by gravity. Our Sun is the nearest star, providing light and heat to our solar system.
+      </p>
+    </section>
+
+    <section class="glass-card" data-aos="fade-up" data-aos-delay="100">
+      <h2>Galaxies</h2>
+      <img src="galaxies.jpg" alt="Galaxies" />
+      <p>
+        Galaxies are vast collections of stars, gas, dust, and dark matter bound by gravity. The Milky Way is the galaxy that contains our Solar System.
+      </p>
+    </section>
+  </main>
+
+  <!-- Cosmic Footer -->
+  <footer>
+    <section class="glass-card hero" data-aos="zoom-in">
+      <p>© 2025 Astronomy Exploration</p>
+    </section>
+  </footer>
+
+  <!-- Libraries -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <!-- Starfield -->
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById("stars-background").appendChild(renderer.domElement);
+
+    const starsGeometry = new THREE.BufferGeometry();
+    const starCount = 10000;
+    const starVertices = [];
+    for (let i = 0; i < starCount; i++) {
+      starVertices.push((Math.random() - 0.5) * 2000);
+      starVertices.push((Math.random() - 0.5) * 2000);
+      starVertices.push(-Math.random() * 1000);
+    }
+    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff });
+    const starField = new THREE.Points(starsGeometry, starMaterial);
+    scene.add(starField);
+
+    camera.position.z = 1;
+    const animate = () => {
+      requestAnimationFrame(animate);
+      starField.rotation.y += 0.0005;
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+
+  <!-- Card Selection Script -->
+<script>
+  // Card selection behavior
+  const cards = document.querySelectorAll('.glass-card');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const isSelected = card.classList.contains('selected');
+
+      // Reset all
+      cards.forEach(c => {
+        c.classList.remove('selected', 'inactive');
+      });
+
+      // If this one wasn't selected, activate it
+      if (!isSelected) {
+        card.classList.add('selected');
+        cards.forEach(c => {
+          if (c !== card) c.classList.add('inactive');
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
