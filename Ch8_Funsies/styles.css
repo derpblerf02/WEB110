@@ -1,0 +1,165 @@
+/* Name: Seth Coulter · Date: 2025-07-02 · Subject: Funsies Mastery with Cheatsheet & Responsive Nav */
+
+:root {
+  --clr-primary: #ff6f61;
+  --clr-secondary: #4a90e2;
+  --clr-dark: #1a1a1a;
+  --clr-light: #fafafa;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-image: url('images/fireworks.webp');
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--clr-dark);
+  line-height: 1.6;
+}
+
+.main-title {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    margin: 2rem 0;
+}
+
+/* Navigation */
+.nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  background: var(--clr-dark);
+}
+.nav ul li {
+  margin: 0.5rem 1rem;
+}
+.nav ul li a {
+  color: var(--clr-light);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.nav ul li a:hover {
+  color: var(--clr-primary);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh; /* reduced height */
+  overflow: hidden;
+  margin-top: 0;     /* flush with nav */
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+.hero-text {
+  position: absolute;
+  text-align: center;
+  color: var(--clr-light);
+}
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.btn {
+  background: var(--clr-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  color: var(--clr-light);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: var(--clr-secondary);
+}
+
+/* Features */
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 1rem;
+}
+.card {
+  background: #fff;
+  flex: 1;
+  margin: 0 0.5rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+.icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Cheatsheet Section */
+.cheatsheet {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.cheatsheet h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.cheatsheet img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+.cheatsheet p {
+  font-size: 1rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--clr-dark);
+  color: var(--clr-light);
+}
+
+/* Responsive (Mobile) */
+@media (max-width: 800px) {
+  /* Nav becomes vertical */
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav ul li {
+    margin: 0.5rem 0;
+  }
+  /* Features stack */
+  .features {
+    flex-direction: column;
+  }
+  .card {
+    margin: 1rem 0;
+  }
+}
