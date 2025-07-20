@@ -8,17 +8,19 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: 'Prompt cannot be empty.' });
   }
 
-  const fullPrompt = `
-  You are an expert Midjourney prompt engineer. Your task is to take a user's simple idea and expand it into a detailed, structured prompt in this exact format:
-  <Foreground: [detailed description]> <Midground: [detailed description]> <Background: [detailed description]> | <Style: [detailed description]>
+ const fullPrompt = [
+  {
+    role: "system",
+    content: "You are an expert Midjourney prompt engineer. Your task is to take a user's simple idea and expand it into a detailed, structured prompt. The output must be a single line following this exact format: <Foreground: [detailed description]> <Midground: [detailed description]> <Background: [detailed description]> | <Style: [detailed description]>"
+  },
+  {
+    role: "user",
+    content: `User's Idea: "${userPrompt}"\n\nOptimized Prompt:`
+  }
+];  // Use array of messages for Llama-3-Instruct format
 
-  User's Idea: "${userPrompt}"
-
-  Output the optimized prompt as a single line starting with: Optimized Prompt: `;
-
-  try {
-    const hfResponse = await fetch(
-  "https://api-inference.huggingface.co/models/gpt2",
+const hfResponse = await fetch(
+  "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct",
   {
     headers: {
       "Authorization": `Bearer ${process.env.HF_API_KEY}`,
@@ -26,7 +28,7 @@ export default async function handler(request, response) {
     },
     method: "POST",
     body: JSON.stringify({
-      inputs: fullPrompt,
+      inputs: fullPrompt,  // Llama-3 handles message arrays natively
       parameters: {
         max_new_tokens: 250,
         temperature: 0.7,
