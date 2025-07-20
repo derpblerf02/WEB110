@@ -22,8 +22,9 @@ export default async function handler(request, response) {
     // 3. Call the Hugging Face Inference API.
     // We're using a powerful, instruction-following model like Mistral 7B.
     const hfResponse = await fetch(
-  "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct",
-  {
+      // CORRECTED: Use a non-gated, readily available instruction-tuned model.
+      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+      {
         headers: {
           // Use the API key securely stored as an environment variable.
           "Authorization": `Bearer ${process.env.HF_API_KEY}`,
