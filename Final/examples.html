@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midjourney Prompt Optimizer - Examples</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white">
+    <div id="wrapper">
+        <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <span class="text-lg font-bold">MJ Prompt Optimizer</span>
+                <div class="hidden md:flex space-x-8 text-sm font-light">
+                    <a href="index.html#optimizer" class="hover:text-gray-300 transition-colors">Optimizer</a>
+                    <a href="examples.html" class="hover:text-gray-300 transition-colors">Examples</a>
+                    <a href="index.html#about" class="hover:text-gray-300 transition-colors">About</a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="examples-page">
+            <section class="banner">
+                <h2 class="text-5xl md:text-7xl font-bold">Examples</h2>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">See the dramatic difference between lazy prompts and optimized structured prompts.</p>
+            </section>
+
+            <section class="examples-grid">
+                <div class="card">
+                    <div class="inner">
+                        <div class="front">
+                            <h3>Before</h3>
+                            <p>"Fuzzy duck in a pond, dark, sci-fi style"</p>
+                        </div>
+                        <div class="back">
+                            <img src="https://via.placeholder.com/400x300/333/fff?text=Lazy+Prompt+Image+(Fuzzy+Duck)" alt="Image from lazy prompt">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="inner">
+                        <div class="front">
+                            <h3>After</h3>
+                            <p><Foreground: adorable duckling [soft yellow down feathers, bright orange bill, sitting in shallow pond water, morning dewdrops on feathers]> <Midground: misty pond [gentle ripples, lily pads, faint bioluminescent algae]> <Background: futuristic forest [towering neon-lit trees, hovering drones, starry night sky]> | <Style: sci-fi realism [high detail, moody lighting, vibrant neon accents]></p>
+                        </div>
+                        <div class="back">
+                            <img src="https://via.placeholder.com/400x300/333/fff?text=Optimized+Prompt+Image+(Duckling)" alt="Image from optimized prompt">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="inner">
+                        <div class="front">
+                            <h3>Before</h3>
+                            <p>"City with robots, cool lights"</p>
+                        </div>
+                        <div class="back">
+                            <img src="https://via.placeholder.com/400x300/333/fff?text=Lazy+Prompt+Image+(Robot+City)" alt="Image from lazy prompt">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="inner">
+                        <div class="front">
+                            <h3>After</h3>
+                            <p><Foreground: humanoid robot [sleek metallic surface, glowing blue joints, holding a holographic device]> <Midground: bustling street [hovering vehicles, neon signs, reflective wet pavement]> <Background: towering cityscape [skyscrapers with holographic displays, starry sky with orbiting satellites]> | <Style: cyberpunk aesthetic [high contrast, neon glow, cinematic depth]></p>
+                        </div>
+                        <div class="back">
+                            <img src="https://via.placeholder.com/400x300/333/fff?text=Optimized+Prompt+Image+(Robot+City)" alt="Image from optimized prompt">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="why-it-works">
+                <h2>Why This Format Works</h2>
+                <div class="why-grid">
+                    <div>
+                        <p><strong>Hierarchical Structure:</strong> By organizing your prompt into Foreground, Midground, and Background, you mirror how visual composition actually works. Midjourney's AI can better understand the spatial relationships and importance of each element.</p>
+                    </div>
+                    <div>
+                        <p><strong>Detailed Context:</strong> Instead of just saying "fuzzy duck," we provide specific details within each layer. "Foreground: adorable duckling [soft yellow down feathers, bright orange bill, sitting in shallow pond water, morning dewdrops on feathers]" gives the AI clear, actionable information.</p>
+                    </div>
+                    <div>
+                        <p><strong>Style Separation:</strong> By isolating style directives from content, you avoid conflicts between what you want and how you want it rendered. This prevents the AI from getting confused about whether "dark" refers to the subject matter or the lighting style.</p>
+                    </div>
+                    <div>
+                        <p><strong>Consistency & Iteration:</strong> The structured format makes it easy to modify specific aspects without rewriting the entire prompt. Want to change just the background? Simply edit that section while keeping everything else intact.</p>
+                    </div>
+                    <div>
+                        <p><strong>AI Training Alignment:</strong> This format aligns with how modern AI models process visual information - in layers and with clear hierarchical understanding. It speaks the AI's "language" more effectively than stream-of-consciousness descriptions.</p>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <aside>
+                        <h3>❌ Lazy Prompt Problems</h3>
+                        <ul>
+                            <li>Ambiguous visual hierarchy</li>
+                            <li>Mixed style and content directives</li>
+                            <li>Lacks specific visual details</li>
+                            <li>Inconsistent results</li>
+                            <li>Hard to iterate and refine</li>
+                        </ul>
+                    </aside>
+                    <aside>
+                        <h3>✅ Structured Prompt Benefits</h3>
+                        <ul>
+                            <li>Clear visual composition</li>
+                            <li>Separated concerns</li>
+                            <li>Rich, specific details</li>
+                            <li>Predictable, high-quality results</li>
+                            <li>Easy to modify and improve</li>
+                        </ul>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built for better prompts. © 2024</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.querySelector('.inner').classList.toggle('flipped');
+            });
+        });
+    </script>
+</body>
+</html>
