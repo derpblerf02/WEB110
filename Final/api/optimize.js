@@ -20,7 +20,7 @@ export default async function handler(request, response) {
 ];  // Use array of messages for Llama-3-Instruct format
 
 const hfResponse = await fetch(
-  "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct",
+  "google/gemma-7b-it",
   {
     headers: {
       "Authorization": `Bearer ${process.env.HF_API_KEY}`,
