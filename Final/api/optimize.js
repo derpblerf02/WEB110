@@ -8,38 +8,33 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: 'Prompt cannot be empty.' });
   }
 
-  // 2. This is the "secret sauce." We create a detailed prompt for the LLM.
-  // This guides the model to give us a response in the exact format we want.
   const fullPrompt = `
-    You are an expert Midjourney prompt engineer. Your task is to take a user's simple idea and expand it into a detailed, structured prompt. The output must be a single line following this exact format:
-    <Foreground: [detailed description]> <Midground: [detailed description]> <Background: [detailed description]> | <Style: [detailed description]>
+  You are an expert Midjourney prompt engineer. Your task is to take a user's simple idea and expand it into a detailed, structured prompt in this exact format:
+  <Foreground: [detailed description]> <Midground: [detailed description]> <Background: [detailed description]> | <Style: [detailed description]>
 
-    User's Idea: "${userPrompt}"
+  User's Idea: "${userPrompt}"
 
-    Optimized Prompt:`;
+  Output the optimized prompt as a single line starting with: Optimized Prompt: `;
 
   try {
-    // 3. Call the Hugging Face Inference API.
-    // We're using a powerful, instruction-following model like Mistral 7B.
     const hfResponse = await fetch(
-    "https://api-inference.huggingface.co/models/microsoft/phi-2",
-      {
-        headers: {
-          // Use the API key securely stored as an environment variable.
-          "Authorization": `Bearer ${process.env.HF_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          inputs: fullPrompt,
-          parameters: {
-            max_new_tokens: 250, // Limit the length of the response
-            temperature: 0.7,   // Add some creativity
-            return_full_text: false, // Only return the generated part
-          },
-        }),
-      }
-    );
+  "https://api-inference.huggingface.co/models/gpt2",
+  {
+    headers: {
+      "Authorization": `Bearer ${process.env.HF_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      inputs: fullPrompt,
+      parameters: {
+        max_new_tokens: 250,
+        temperature: 0.7,
+        return_full_text: false,
+      },
+    }),
+  }
+);
 
     if (!hfResponse.ok) {
         // If Hugging Face returns an error, forward it to the user.
