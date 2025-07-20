@@ -21,7 +21,7 @@ module.exports = async (request, response) => {
   try {
     // 3. Call the Hugging Face Inference API.
     const hfResponse = await fetch(
-      "https://api-inference.huggingface.co/models/google/gemma-7b-it",
+      "https://hansimov-hf-llm-api.hf.space/api/v1/models",
       {
         headers: {
           "Authorization": `Bearer ${process.env.HF_API_KEY}`,
