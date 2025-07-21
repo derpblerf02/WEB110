@@ -55,7 +55,7 @@ export default async function handler(req, res) {
 
   if (imagePart) {
     fullPrompt = `
-      Analyze the provided image and use it to optimize a Midjourney prompt based on the user's idea. Describe key elements from the image (colors, subjects, style) and incorporate them into the structured prompt.
+      Analyze the provided image and incorporate them into a final single structured prompt.
       
       User's Idea: "${userPrompt}"
       
