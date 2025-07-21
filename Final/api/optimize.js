@@ -53,8 +53,8 @@ export default async function handler(req, res) {
       
       Optimized Prompt:`;
   } else {
-    fullPrompt += '
-Optimized Prompt:';
+    fullPrompt += `
+Optimized Prompt:`;
   }
 
   try {
