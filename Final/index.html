@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midjourney Prompt Optimizer</title>
+    <title>Midjourney </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -12,9 +12,9 @@
 
     <!-- Header Navigation -->
     <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <nav class="container mx-auto px-8 py-4 flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0">
             <span class="text-lg font-bold">MJ Prompt Optimizer</span>
-            <div class="hidden md:flex space-x-8 text-sm font-light">
+            <div class="flex flex-row space-x-8 text-sm font-light">
                 <a href="#optimizer" class="hover:text-gray-300 transition-colors">Optimizer</a>
                 <a href="examples.html" class="hover:text-gray-300 transition-colors">Examples</a>
                 <a href="#about" class="hover:text-gray-300 transition-colors">About</a>
@@ -23,23 +23,20 @@
     </header>
 
     <!-- Main Content -->
-    <main>
+    <main class="px-8">
         
-        <!-- Hero Section -->
-        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 py-24" style="background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);">
-            <div class="scroll-animate">
-                <h1 class="text-6xl md:text-8xl font-extrabold mb-4 leading-tight">Midjourney Optimizer</h1>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">Transform your simple ideas into structured, powerful Midjourney prompts that generate exactly what you envision.</p>
+        <!-- Hero and Optimizer Section -->
+        <section id="optimizer" class="w-full flex flex-col justify-center items-center py-16" style="background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);">
+            <div class="scroll-animate text-center">
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-4 leading-tight">Midjourney</h1>
+                <h2 class="text-5xl md:text-7xl font-bold text-center mb-12">Prompt Optimizer</h2>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">Transform your simple ideas into structured, powerful Midjourney prompts that generate exactly what you envision.</p>
             </div>
-        </section>
-
-        <!-- Optimizer Section -->
-        <section id="optimizer" class="min-h-screen w-full flex flex-col justify-center items-center py-20 px-6" style="background-color: #050510;">
             <div class="w-full max-w-4xl scroll-animate">
-                <h2 class="text-5xl md:text-7xl font-bold text-center mb-16">Prompt Optimizer</h2>
+                
                 
                 <!-- Input Form -->
-                <div class="bg-[#111] border border-[#222] rounded-2xl p-8 mb-8">
+                <div class="bg-[#111] border border-[#222] rounded-2xl p-8 mb-8" style="background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);">
                     <label for="userPrompt" class="block text-xl font-semibold mb-4">Describe your vision:</label>
                     <textarea 
                         id="userPrompt" 
@@ -72,25 +69,25 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="min-h-screen w-full flex flex-col justify-center items-center py-20 px-6 bg-black">
+        <section id="about" class="w-full flex flex-col justify-center items-center py-16 bg-black">
              <div class="w-full max-w-6xl scroll-animate">
-                <h2 class="text-5xl md:text-7xl font-bold text-center mb-16">How It Works</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-[#111] border border-[#222] rounded-2xl p-8 text-center">
+                <h2 class="text-5xl md:text-7xl font-bold text-center mb-12">How It Works</h2>
+                <div class="flex flex-col items-center gap-8">
+                    <div class="bg-[#111] border border-[#222] rounded-2xl p-8 text-center w-full md:w-2/3">
                         <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl font-bold">1</span>
                         </div>
                         <h3 class="text-xl font-bold mb-4">Structure</h3>
                         <p class="text-gray-300">Your prompt is organized into Foreground, Midground, Background, and Style components for maximum clarity.</p>
                     </div>
-                    <div class="bg-[#111] border border-[#222] rounded-2xl p-8 text-center">
+                    <div class="bg-[#111] border border-[#222] rounded-2xl p-8 text-center w-full md:w-2/3">
                         <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl font-bold">2</span>
                         </div>
                         <h3 class="text-xl font-bold mb-4">Detail</h3>
                         <p class="text-gray-300">Each layer is enhanced with specific details that guide Midjourney's AI to understand your exact vision.</p>
                     </div>
-                    <div class="bg-[#111] border border-[#222] rounded-2xl p-8 text-center">
+                    <div class="bg-[#111] border border-[#222] rounded-2xl p-8 text-center w-full md:w-2/3">
                         <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl font-bold">3</span>
                         </div>
@@ -109,7 +106,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="container mx-auto px-6 py-12 text-center text-gray-500 text-sm">
+    <footer class="container mx-auto px-8 py-12 text-center text-gray-500 text-sm">
         <p>Built for better prompts. © 2024</p>
     </footer>
 
