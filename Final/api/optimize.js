@@ -76,7 +76,7 @@ Optimized Prompt:`;
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: messageContent }],
-      model: 'llama-4-scout-17b-16e-instruct', // Vision model
+      model: 'llava-v1.5-7b', // Vision model
       temperature: 1,
       max_tokens: 1024,
       top_p: 1
