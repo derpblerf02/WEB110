@@ -48,14 +48,14 @@ export default async function handler(req, res) {
 
   // Build prompt
   let fullPrompt = `
-    You are an expert Midjourney prompt engineer. Your task is to take a user's simple idea and expand it into a detailed, structured prompt. The output must be a single line following this exact format:
+   You are an expert Midjourney prompt engineer. Your task is to take a user's simple idea and expand it into a detailed, structured prompt. Respond ONLY with the optimized prompt in this exact format as a single line, with no additional text, explanations, or descriptions:
     <Foreground: [detailed description]> <Midground: [detailed description]> <Background: [detailed description]> | <Style: [detailed description]>
-
     User's Idea: "${userPrompt}"`;
 
   if (imagePart) {
     fullPrompt = `
-      Analyze the provided image and incorporate them into a final single structured prompt.
+      Analyze the provided image and incorporate its key elements (subjects, colors, style, composition) into a detailed, structured Midjourney prompt based on the user's idea. Respond ONLY with the optimized prompt in this exact format as a single line, with no additional text, explanations, or descriptions:
+      <Foreground: [detailed description]> <Midground: [detailed description]> <Background: [detailed description]> | <Style: [detailed description]>
       
       User's Idea: "${userPrompt}"
       
