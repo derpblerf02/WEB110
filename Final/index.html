@@ -37,19 +37,24 @@
                 
                 <!-- Input Form -->
                 <div class="bg-[#111] border border-[#222] rounded-2xl p-8 mb-8" style="background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);">
-                    <label for="userPrompt" class="block text-xl font-semibold mb-4">Describe your vision:</label>
-                    <textarea 
-                        id="userPrompt" 
-                        class="w-full bg-[#222] border border-[#333] rounded-xl p-4 text-white resize-none focus:outline-none focus:border-blue-500 transition-colors" 
-                        rows="4" 
-                        placeholder="e.g., A student studying at a desk with books, dreaming of the future with technology and space exploration"
-                    ></textarea>
-                    <button 
-                        id="optimizeBtn" 
-                        class="mt-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-full transition-colors"
-                    >
-                        Optimize Prompt
-                    </button>
+                    <form id="promptForm">
+                        <label for="userPrompt" class="block text-xl font-semibold mb-4">Describe your vision:</label>
+                        <textarea 
+                            id="userPrompt" 
+                            class="w-full bg-[#222] border border-[#333] rounded-xl p-4 text-white resize-none focus:outline-none focus:border-blue-500 transition-colors" 
+                            rows="4" 
+                            placeholder="e.g., A student studying at a desk with books, dreaming of the future with technology and space exploration"
+                        ></textarea>
+                        <input type="file" id="imageFile" accept="image/*" class="mt-4"> <!-- For upload -->
+                        <input type="text" id="imageUrl" placeholder="Or enter image URL" class="mt-4 w-full bg-[#222] border border-[#333] rounded-xl p-4 text-white resize-none focus:outline-none focus:border-blue-500 transition-colors"> <!-- Optional for URL -->
+                        <button 
+                            type="submit"
+                            id="optimizeBtn" 
+                            class="mt-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-full transition-colors"
+                        >
+                            Optimize Prompt
+                        </button>
+                    </form>
                 </div>
 
                 <!-- Output Section -->
@@ -126,12 +131,18 @@
             const optimizedOutput = document.getElementById('optimizedOutput');
             const copyBtn = document.getElementById('copyBtn');
 
-            optimizeBtn.addEventListener('click', async () => {
-                const input = userPrompt.value.trim();
-                if (!input) {
-                    alert('Please enter a description first!');
-                    return;
-                }
+            const form = document.getElementById('promptForm');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const userPrompt = document.getElementById('userPrompt').value;
+                const imageFile = document.getElementById('imageFile').files[0];
+                const imageUrl = document.getElementById('imageUrl').value;
+
+                const formData = new FormData();
+                formData.append('userPrompt', userPrompt);
+                if (imageFile) formData.append('image', imageFile); // Send file
+                if (imageUrl) formData.append('imageUrl', imageUrl); // Or URL
 
                 // Show a loading state
                 optimizeBtn.disabled = true;
@@ -143,10 +154,7 @@
                     // Call our secure serverless function
                     const response = await fetch('/api/optimize', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ userPrompt: input }),
+                        body: formData, // Handles files automatically
                     });
 
                     if (!response.ok) {
