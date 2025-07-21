@@ -29,9 +29,10 @@ export default async function handler(request, response) {
       messages: [
         { role: 'user', content: fullPrompt }
       ],
-      model: 'llama-3.1-70b-versatile',  // Fast, free model great for this task
-      max_tokens: 250,                  // Limit response length
-      temperature: 0.7,                 // Add some creativity
+      model: 'llama-3.3-70b-versatile',
+      temperature: 1,
+      max_tokens: 1024,
+      top_p: 1
     });
 
     // 4. Extract the generated text and send it back to the frontend.
