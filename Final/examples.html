@@ -7,13 +7,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .accordion-item .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 34, 100, 0.4) 0%, rgba(0, 34, 100, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .accordion-item:hover .gradient-overlay {
+            opacity: 1;
+        }
+        .comparison-grid li {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .comparison-grid.visible li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body class="bg-black text-white">
     <div id="wrapper">
         <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
-            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <nav class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0">
                 <span class="text-lg font-bold">MJ Prompt Optimizer</span>
-                <div class="hidden md:flex space-x-8 text-sm font-light">
+                <div class="flex flex-row space-x-8 text-sm font-light">
                     <a href="index.html#optimizer" class="hover:text-gray-300 transition-colors">Optimizer</a>
                     <a href="examples.html" class="hover:text-gray-300 transition-colors">Examples</a>
                     <a href="index.html#about" class="hover:text-gray-300 transition-colors">About</a>
@@ -22,7 +47,7 @@
         </header>
 
         <main class="examples-page">
-            <section class="banner">
+            <section class="banner" style="background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);">
                 <h2 class="text-5xl md:text-7xl font-bold">Examples</h2>
                 <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">See the dramatic difference between lazy prompts and optimized structured prompts.</p>
             </section>
@@ -30,71 +55,104 @@
             <section class="examples-grid">
                 <div class="card">
                     <div class="inner">
-                        <div class="front">
-                            <h3>Before</h3>
-                            <p>"Fuzzy duck in a pond, dark, sci-fi style"</p>
+                        <div class="front flex flex-col p-6">
+                            <h3 class="text-xl font-bold mb-4">Before</h3>
+                            <p class="text-sm text-gray-300 overflow-y-auto flex-grow">a post apocalypse broken ruins of a building on a plain florescent green background. stock footage use, no shadows, full body shot, realistic</p>
                         </div>
-                        <div class="back">
-                            <img src="https://via.placeholder.com/400x300/333/fff?text=Lazy+Prompt+Image+(Fuzzy+Duck)" alt="Image from lazy prompt">
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="inner">
-                        <div class="front">
-                            <h3>After</h3>
-                            <p><Foreground: adorable duckling [soft yellow down feathers, bright orange bill, sitting in shallow pond water, morning dewdrops on feathers]> <Midground: misty pond [gentle ripples, lily pads, faint bioluminescent algae]> <Background: futuristic forest [towering neon-lit trees, hovering drones, starry night sky]> | <Style: sci-fi realism [high detail, moody lighting, vibrant neon accents]></p>
-                        </div>
-                        <div class="back">
-                            <img src="https://via.placeholder.com/400x300/333/fff?text=Optimized+Prompt+Image+(Duckling)" alt="Image from optimized prompt">
+                        <div class="back flex items-center justify-center p-4 bg-[#111]">
+                            <img src="images/ex1.png" alt="Image from lazy prompt" class="w-full h-full object-contain rounded-lg">
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="inner">
-                        <div class="front">
-                            <h3>Before</h3>
-                            <p>"City with robots, cool lights"</p>
+                        <div class="front flex flex-col p-6">
+                            <h3 class="text-xl font-bold mb-4">After</h3>
+                            <p class="text-sm text-gray-300 overflow-y-auto flex-grow"> Foreground: destroyed building [detailed crumbling concrete, exposed rebar, shattered windows, debris base, realistic weathering, cinematic lighting]> Midground: organized rubble [strategically placed fragments, subtle structural remnants, clean isolation, minimal clutter]> Background: professional green screen [even vibrant green, no horizon, no shadows, smooth texture for compositing]> | Style: premium stock asset [balanced lighting, high-resolution, isolated subject, gritty dystopian mood, optimized for post-production]</p>
                         </div>
-                        <div class="back">
-                            <img src="https://via.placeholder.com/400x300/333/fff?text=Lazy+Prompt+Image+(Robot+City)" alt="Image from lazy prompt">
+                        <div class="back flex items-center justify-center p-4 bg-[#111]">
+                            <img src="images/ex2.png" alt="Image from optimized prompt" class="w-full h-full object-contain rounded-lg">
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="inner">
-                        <div class="front">
-                            <h3>After</h3>
-                            <p><Foreground: humanoid robot [sleek metallic surface, glowing blue joints, holding a holographic device]> <Midground: bustling street [hovering vehicles, neon signs, reflective wet pavement]> <Background: towering cityscape [skyscrapers with holographic displays, starry sky with orbiting satellites]> | <Style: cyberpunk aesthetic [high contrast, neon glow, cinematic depth]></p>
+                        <div class="front flex flex-col p-6">
+                            <h3 class="text-xl font-bold mb-4">Before</h3>
+                            <p class="text-sm text-gray-300 overflow-y-auto flex-grow">an abstract photography of a unicorn startup company going bankrupt</p>
                         </div>
-                        <div class="back">
-                            <img src="https://via.placeholder.com/400x300/333/fff?text=Optimized+Prompt+Image+(Robot+City)" alt="Image from optimized prompt">
+                        <div class="back flex items-center justify-center p-4 bg-[#111]">
+                            <img src="images/ex3.png" alt="Image from lazy prompt" class="w-full h-full object-contain rounded-lg">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="inner">
+                        <div class="front flex flex-col p-6">
+                            <h3 class="text-xl font-bold mb-4">After</h3>
+                            <p class="text-sm text-gray-300 overflow-y-auto flex-grow"> Foreground: crumbling unicorn statue [shattered horn, cracked golden body, scattered dollar bills fading into dust, desperate entrepreneur silhouette, chaotic collapse details]> Midground: dissolving startup office [fading desks with broken laptops, wilting rainbow banners, dissolving company logo, papers swirling in abstract wind]> Background: surreal financial void [dark gradient fading to neon purple, abstract stock charts plummeting, ghostly investors vanishing, endless abstract horizon]> | Style: abstract photography blend [vibrant surreal colors, high contrast chaos, soft focus transitions, symbolic bankruptcy narrative, dreamlike composition]> </p>
+                        </div>
+                        <div class="back flex items-center justify-center p-4 bg-[#111]">
+                            <img src="images/ex4.png" alt="Image from optimized prompt" class="w-full h-full object-contain rounded-lg">
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="why-it-works">
-                <h2>Why This Format Works</h2>
-                <div class="why-grid">
-                    <div>
-                        <p><strong>Hierarchical Structure:</strong> By organizing your prompt into Foreground, Midground, and Background, you mirror how visual composition actually works. Midjourney's AI can better understand the spatial relationships and importance of each element.</p>
+            <section id="why-it-works" class="py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold">From Vague Ideas to Precise Results</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto mt-4">The difference you see in the examples isn't luck; it's structure. Giving the AI a clear blueprint eliminates guesswork and unlocks its true potential. Here’s why it works:</p>
+                </div>
+
+                <div id="accordion-container" class="max-w-3xl mx-auto">
+                    <!-- Accordion Item 1 -->
+                    <div class="accordion-item bg-[#111] border border-[#222] rounded-lg mb-4 relative overflow-hidden">
+                        <div class="gradient-overlay"></div>
+                        <button class="accordion-header w-full flex justify-between items-center p-6 text-left relative z-10 bg-transparent">
+                            <h3 class="text-xl font-bold">You Command the Composition</h3>
+                            <span class="accordion-icon text-2xl font-thin transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden relative z-10 bg-transparent" style="max-height: 0px; transition: max-height 0.5s ease-in-out;">
+                            <p class="p-6 pt-0 text-gray-300">Instead of one confusing sentence, you direct the AI layer by layer. By defining the Foreground, Midground, and Background, you get precise control over the scene's depth and focus.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p><strong>Detailed Context:</strong> Instead of just saying "fuzzy duck," we provide specific details within each layer. "Foreground: adorable duckling [soft yellow down feathers, bright orange bill, sitting in shallow pond water, morning dewdrops on feathers]" gives the AI clear, actionable information.</p>
+                    <!-- Accordion Item 2 -->
+                    <div class="accordion-item bg-[#111] border border-[#222] rounded-lg mb-4 relative overflow-hidden">
+                        <div class="gradient-overlay"></div>
+                        <button class="accordion-header w-full flex justify-between items-center p-6 text-left relative z-10 bg-transparent">
+                            <h3 class="text-xl font-bold">Detail Drives Quality</h3>
+                            <span class="accordion-icon text-2xl font-thin transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden relative z-10 bg-transparent" style="max-height: 0px; transition: max-height 0.5s ease-in-out;">
+                            <p class="p-6 pt-0 text-gray-300">Vague prompts like "a broken building" lead to generic images. The structured format pushes you to provide the rich, actionable details—like "detailed crumbling concrete, exposed rebar, shattered windows"—that produce cinematic, high-quality results.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p><strong>Style Separation:</strong> By isolating style directives from content, you avoid conflicts between what you want and how you want it rendered. This prevents the AI from getting confused about whether "dark" refers to the subject matter or the lighting style.</p>
+                    <!-- Accordion Item 3 -->
+                    <div class="accordion-item bg-[#111] border border-[#222] rounded-lg mb-4 relative overflow-hidden">
+                        <div class="gradient-overlay"></div>
+                        <button class="accordion-header w-full flex justify-between items-center p-6 text-left relative z-10 bg-transparent">
+                            <h3 class="text-xl font-bold">Style Becomes a Tool, Not a Mess</h3>
+                            <span class="accordion-icon text-2xl font-thin transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden relative z-10 bg-transparent" style="max-height: 0px; transition: max-height 0.5s ease-in-out;">
+                            <p class="p-6 pt-0 text-gray-300">Separating Style from content is crucial. It allows you to define the mood—like "gritty dystopian"—without it interfering with the scene's details. You control the vibe and the visuals independently.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p><strong>Consistency & Iteration:</strong> The structured format makes it easy to modify specific aspects without rewriting the entire prompt. Want to change just the background? Simply edit that section while keeping everything else intact.</p>
-                    </div>
-                    <div>
-                        <p><strong>AI Training Alignment:</strong> This format aligns with how modern AI models process visual information - in layers and with clear hierarchical understanding. It speaks the AI's "language" more effectively than stream-of-consciousness descriptions.</p>
+                    <!-- Accordion Item 4 -->
+                    <div class="accordion-item bg-[#111] border border-[#222] rounded-lg mb-4 relative overflow-hidden">
+                        <div class="gradient-overlay"></div>
+                        <button class="accordion-header w-full flex justify-between items-center p-6 text-left relative z-10 bg-transparent">
+                            <h3 class="text-xl font-bold">Iteration is Fast and Easy</h3>
+                            <span class="accordion-icon text-2xl font-thin transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden relative z-10 bg-transparent" style="max-height: 0px; transition: max-height 0.5s ease-in-out;">
+                            <p class="p-6 pt-0 text-gray-300">Want to change the lighting or the background? With a structured prompt, you just edit that specific section. This makes refining your idea simple and predictable, saving you time and credits.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="comparison-grid">
+                <div class="comparison-grid mt-16">
                     <aside>
                         <h3>❌ Lazy Prompt Problems</h3>
                         <ul>
@@ -125,10 +183,59 @@
     </div>
 
     <script>
+        // Card flip functionality
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('click', () => {
                 card.querySelector('.inner').classList.toggle('flipped');
             });
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionItem = header.closest('.accordion-item');
+                const accordionContent = header.nextElementSibling;
+                const accordionIcon = header.querySelector('.accordion-icon');
+
+                const isActive = accordionItem.classList.toggle('active');
+
+                if (isActive) {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                    accordionIcon.style.transform = 'rotate(45deg)';
+                } else {
+                    accordionContent.style.maxHeight = '0px';
+                    accordionIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // Accordion hover effect
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            const overlay = item.querySelector('.gradient-overlay');
+            item.addEventListener('mousemove', e => {
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                overlay.style.setProperty('--mouse-x', `${x}px`);
+                overlay.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Scroll-triggered animation for comparison lists
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const listItems = entry.target.querySelectorAll('li');
+                    listItems.forEach((li, index) => {
+                        li.style.transitionDelay = `${index * 100}ms`;
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.comparison-grid').forEach(grid => {
+            observer.observe(grid);
         });
     </script>
 </body>
