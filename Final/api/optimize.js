@@ -1,5 +1,7 @@
 // This is our serverless function acting as a secure gateway.
 
+import Groq from 'groq-sdk';
+
 export default async function handler(request, response) {
   // 1. Get the user's prompt from the request and perform basic validation.
   const { userPrompt } = request.body;
@@ -19,43 +21,25 @@ export default async function handler(request, response) {
     Optimized Prompt:`;
 
   try {
-    // 3. Call the Hugging Face Inference API.
-    // The URL must be the full API endpoint.
-    const hfResponse = await fetch(
-      "https://api-inference.huggingface.co/models/google/gemma-7b-it", // ✅ CORRECTED URL
-      {
-        headers: {
-          // Use the API key securely stored as an environment variable.
-          "Authorization": `Bearer ${process.env.HF_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          inputs: fullPrompt,
-          parameters: {
-            max_new_tokens: 250,      // Limit the length of the response
-            temperature: 0.7,         // Add some creativity
-            return_full_text: false,  // Only return the generated part
-          },
-        }),
-      }
-    );
+    // 3. Initialize Groq client with your API key from env vars.
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-    if (!hfResponse.ok) {
-        // If Hugging Face returns an error, forward it to the user.
-        const errorBody = await hfResponse.text();
-        console.error("Hugging Face API Error:", errorBody);
-        return response.status(hfResponse.status).json({ error: `Hugging Face API error: ${errorBody}` });
-    }
-
-    const data = await hfResponse.json();
+    // Call the Groq API for chat completion.
+    const completion = await groq.chat.completions.create({
+      messages: [
+        { role: 'user', content: fullPrompt }
+      ],
+      model: 'llama-3.1-70b-versatile',  // Fast, free model great for this task
+      max_tokens: 250,                  // Limit response length
+      temperature: 0.7,                 // Add some creativity
+    });
 
     // 4. Extract the generated text and send it back to the frontend.
-    const optimizedText = data[0].generated_text.trim();
+    const optimizedText = completion.choices[0].message.content.trim();
     response.status(200).json({ optimizedText });
 
   } catch (error) {
-    console.error(error);
-    response.status(500).json({ error: 'An internal server error occurred.' });
+    console.error("Groq API Error:", error);
+    response.status(500).json({ error: 'An internal server error occurred: ' + error.message });
   }
 }
