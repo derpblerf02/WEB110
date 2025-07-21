@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "formidable": "^3.5.4",
-    "groq-sdk": "^0.27.0"
+    "@google/generative-ai": "^0.17.1",
+    "formidable": "^3.5.4"
   },
   "type": "module",
   "engines": {
