@@ -75,12 +75,12 @@ Optimized Prompt:`;
     }
 
     const completion = await groq.chat.completions.create({
-      messages: [{ role: 'user', content: messageContent }],
-      model: 'llava-v1.5-7b', // Vision model
-      temperature: 1,
-      max_tokens: 1024,
-      top_p: 1
-    });
+  messages: [{ role: 'user', content: messageContent }],
+  model: 'llama-4-scout-17b-16e-instruct',  // <-- Change to this valid vision model
+  temperature: 1,
+  max_tokens: 1024,
+  top_p: 1
+});
 
     const optimizedText = completion.choices[0].message.content.trim();
     res.status(200).json({ optimizedText });
