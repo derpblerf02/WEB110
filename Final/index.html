@@ -1,9 +1,10 @@
+<!-- Seth Coulter | July 22 2025 (Index) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midjourney </title>
+    <title>Midjourney Prompt Optimizer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -14,10 +15,12 @@
     <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
         <nav class="container mx-auto px-8 py-4 flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0">
             <span class="text-lg font-bold">MJ Prompt Optimizer</span>
-            <div class="flex flex-row space-x-8 text-sm font-light">
-                <a href="#optimizer" class="hover:text-gray-300 transition-colors">Optimizer</a>
+            <div class="flex flex-row space-x-8 text-sm font-light text-center">
+                <a href="index.html#optimizer" class="hover:text-gray-300 transition-colors">Optimizer</a>
                 <a href="examples.html" class="hover:text-gray-300 transition-colors">Examples</a>
-                <a href="#about" class="hover:text-gray-300 transition-colors">About</a>
+                <a href="workflow.html" class="hover:text-gray-300 transition-colors">Workflow</a>
+                <a href="whyitworks.html" class="hover:text-gray-300 transition-colors">Why It Works</a>
+                <a href="about.html" class="hover:text-gray-300 transition-colors">About</a>
             </div>
         </nav>
     </header>
@@ -26,7 +29,7 @@
     <main class="px-8">
         
         <!-- Hero and Optimizer Section -->
-        <section id="optimizer" class="w-full flex flex-col justify-center items-center py-16" style="background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);">
+        <section id="optimizer" class="w-full flex flex-col justify-center items-center py-16 radial-gradient-background">
             <div class="scroll-animate text-center">
                 <h1 class="text-6xl md:text-8xl font-extrabold mb-4 leading-tight">Midjourney</h1>
                 <h2 class="text-5xl md:text-7xl font-bold text-center mb-12">Prompt Optimizer</h2>
@@ -36,7 +39,7 @@
                 
                 
                 <!-- Input Form -->
-                <div class="bg-[#111] border border-[#222] rounded-2xl p-8 mb-8" style="background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);">
+                <div class="bg-[#111] border border-[#222] rounded-2xl p-8 mb-8 radial-gradient-background">
                     <form id="promptForm">
                         <label for="userPrompt" class="block text-xl font-semibold mb-4">Describe your vision:</label>
                         <textarea 
@@ -53,6 +56,13 @@
                             class="mt-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-full transition-colors"
                         >
                             Optimize Prompt
+                        </button>
+                        <button 
+                            type="button"
+                            id="clearBtn" 
+                            class="mt-6 ml-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-3 px-8 rounded-full transition-colors"
+                        >
+                            Clear
                         </button>
                     </form>
                 </div>
@@ -130,8 +140,7 @@
             const outputSection = document.getElementById('outputSection');
             const optimizedOutput = document.getElementById('optimizedOutput');
             const copyBtn = document.getElementById('copyBtn');
-
-            const form = document.getElementById('promptForm');
+            const clearBtn = document.getElementById('clearBtn');
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -178,6 +187,16 @@
                 }
             });
 
+            // --- Clear button functionality ---
+            clearBtn.addEventListener('click', () => {
+                userPrompt.value = '';
+                document.getElementById('imageFile').value = ''; // Clear file input
+                document.getElementById('imageUrl').value = ''; // Clear URL input
+                optimizedOutput.innerHTML = '<span class="text-gray-500">Your optimized prompt will appear here...</span>';
+                outputSection.style.opacity = '0';
+                copyBtn.style.opacity = '0';
+            });
+
             // --- Copy button functionality (no changes here) ---
             copyBtn.addEventListener('click', async () => {
                 try {
@@ -197,6 +216,27 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
 
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href').split('/').pop().split('#')[0]; // Get filename without hash
+                
+                // Special handling for index.html as its href is index.html#optimizer
+                if (currentPath === '' && linkPath === 'index.html') {
+                    link.classList.add('font-semibold', 'text-blue-400');
+                    link.classList.remove('hover:text-gray-300');
+                } else if (currentPath === linkPath) {
+                    link.classList.add('font-semibold', 'text-blue-400');
+                    link.classList.remove('hover:text-gray-300');
+                } else {
+                    link.classList.remove('font-semibold', 'text-blue-400');
+                    link.classList.add('hover:text-gray-300');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
