@@ -1,9 +1,4 @@
-/* filename: style.css */
-/* Name: Grok
-   Date: July 20, 2025
-   Subject: Styles for Prompt-Craft 101 website - Updated with portfolio aesthetic
-   This external stylesheet handles the majority of styles for layout, typography, and design.
-*/
+/* Seth Coulter | July 22 2025 (Stylesheet) */
 
 /* --- Global Styles --- */
 body {
@@ -54,14 +49,19 @@ a:hover {
 }
 
 /* --- Semantic Tags & Layout --- */
-/* This rule is now primarily for fallback and padding/border control.
-   Positioning and background are handled by Tailwind classes in the HTML
-   for consistency (e.g., sticky, bg-black/50, backdrop-blur-lg). */
+
 header {
   padding: 0; /* Let the nav element inside control padding */
   text-align: center;
   border-bottom: 1px solid #222;
   transition: background-color 0.3s ease;
+}
+
+nav ul li a.current {
+  color: #3b82f6; /* Blue for active/current link */
+}
+nav ul li a.current:hover {
+  color: #60a5fa; /* Optional: Lighter blue on hover for active link */
 }
 
 nav ul {
@@ -87,16 +87,17 @@ nav ul li a:hover {
     color: #3b82f6;
 }
 
+/*
 main {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
   padding: 2rem 0;
 }
+*/
 
-main.examples-page {
-  grid-template-columns: 1fr; /* Single column for examples page */
-}
+
+
 
 section {
   background-color: #111;
@@ -112,6 +113,11 @@ section.banner {
   border: 1px solid #222; /* Use border instead of gradient */
   background: #111;      /* Use solid dark color */
   margin-bottom: 3rem;
+  min-height: 250px; /* Ensure consistent height across banners */
+}
+
+.radial-gradient-background {
+    background-image: radial-gradient(ellipse at 50% -20%, #002264, #000 70%);
 }
 
 .examples-grid {
@@ -373,3 +379,113 @@ ul, ol {
     grid-template-columns: 1fr;
   }
 }
+
+.accordion-item .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 34, 100, 0.4) 0%, rgba(0, 34, 100, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.accordion-item:hover .gradient-overlay {
+    opacity: 1;
+}
+
+.card {
+    /* Use a consistent, smooth transition for min-height */
+    transition: min-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.card .inner {
+    /* This is crucial to allow the scaled back face to be visible */
+    overflow: visible;
+    /* Use a consistent transition for the flip effect */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.card .back {
+    /* The image scales with the same timing and easing */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.grow {
+    /* When grown, manage stacking context */
+    z-index: 10;
+}
+
+.card.grow .inner.flipped .back {
+    transform: rotateY(180deg) scale(1.2);
+}
+
+@media (min-width: 768px) {
+    .card.grow {
+        grid-column: 1 / -1;
+        min-height: 500px; /* Increased height to better contain the scaled image */
+    }
+}
+
+/* Additional styles specific to the workflow page for clarity */
+.step-card {
+    background-color: #111;
+    border: 1px solid #222;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Remove margin from the last step card for cleaner spacing */
+.step-card:last-child {
+    margin-bottom: 0;
+}
+
+.prompt-box {
+    background-color: #000;
+    border: 1px solid #333;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-family: monospace;
+    color: #a0aec0;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.prompt-box strong {
+    color: #fff;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.step-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #3b82f6; /* Blue accent for step titles */
+}
+
+.step-card p {
+    max-width: 80ch; /* Limit line length for readability */
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.image-grid img {
+    border-radius: 0.75rem;
+    border: 1px solid #222;
+}
+
