@@ -13,75 +13,73 @@
 
     <!-- Header Navigation -->
     <header class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-8 py-4 flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0">
-            <span class="text-lg font-bold">MJ Prompt Optimizer</span>
-            <div class="flex flex-row space-x-8 text-sm font-light text-center">
-                <a href="index.html#optimizer" class="hover:text-gray-300 transition-colors">Optimizer</a>
-                <a href="examples.html" class="hover:text-gray-300 transition-colors">Examples</a>
-                <a href="workflow.html" class="hover:text-gray-300 transition-colors">Workflow</a>
-                <a href="whyitworks.html" class="hover:text-gray-300 transition-colors">Why It Works</a>
-                <a href="about.html" class="hover:text-gray-300 transition-colors">About</a>
-            </div>
-        </nav>
+       <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0">
+    <span class="text-lg font-bold">MJ Prompt Optimizer</span>
+    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-light text-center">
+        <a href="index.html#optimizer" class="hover:text-gray-300 transition-colors">Optimizer</a>
+        <a href="examples.html" class="hover:text-gray-300 transition-colors">Examples</a>
+        <a href="workflow.html" class="hover:text-gray-300 transition-colors">Workflow</a>
+        <a href="whyitworks.html" class="hover:text-gray-300 transition-colors">Why It Works</a>
+        <a href="about.html" class="hover:text-gray-300 transition-colors">About</a>
+    </div>
+</nav>
     </header>
 
     <!-- Main Content -->
-    <main class="px-8">
+    <main> 
         
         <!-- Hero and Optimizer Section -->
-        <section id="optimizer" class="w-full flex flex-col justify-center items-center py-16 radial-gradient-background">
-            <div class="scroll-animate text-center">
-                <h1 class="text-6xl md:text-8xl font-extrabold mb-4 leading-tight">Midjourney</h1>
-                <h2 class="text-5xl md:text-7xl font-bold text-center mb-12">Prompt Optimizer</h2>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">Transform your simple ideas into structured, powerful Midjourney prompts that generate exactly what you envision.</p>
-            </div>
-            <div class="w-full max-w-4xl scroll-animate">
-                
-                
-                <!-- Input Form -->
-                <div class="bg-[#111] border border-[#222] rounded-2xl p-8 mb-8 radial-gradient-background">
-                    <form id="promptForm">
-                        <label for="userPrompt" class="block text-xl font-semibold mb-4">Describe your vision:</label>
-                        <textarea 
-                            id="userPrompt" 
-                            class="w-full bg-[#222] border border-[#333] rounded-xl p-4 text-white resize-none focus:outline-none focus:border-blue-500 transition-colors" 
-                            rows="4" 
-                            placeholder="e.g., A student studying at a desk with books, dreaming of the future with technology and space exploration"
-                        ></textarea>
-                        <input type="file" id="imageFile" accept="image/*" class="mt-4"> <!-- For upload -->
-                        <input type="text" id="imageUrl" placeholder="Or enter image URL" class="mt-4 w-full bg-[#222] border border-[#333] rounded-xl p-4 text-white resize-none focus:outline-none focus:border-blue-500 transition-colors"> <!-- Optional for URL -->
-                        <button 
-                            type="submit"
-                            id="optimizeBtn" 
-                            class="mt-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-full transition-colors col-span-full sm:col-span-1"
-                        >
-                            Optimize Prompt
-                        </button>
-                        <button 
-                            type="button"
-                            id="clearBtn" 
-                            class="mt-6 ml-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-3 px-8 rounded-full transition-colors col-span-1"
-                        >
-                            Clear
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Output Section -->
-                <div id="outputSection" class="bg-[#111] border border-[#222] rounded-2xl p-8 opacity-0 transition-opacity duration-500">
-                    <h3 class="text-2xl font-bold mb-4 text-green-400">Optimized Prompt:</h3>
-                    <div id="optimizedOutput" class="bg-[#222] border border-[#333] rounded-xl p-4 text-gray-300 leading-relaxed min-h-[120px] flex items-center">
-                        <span class="text-gray-500">Your optimized prompt will appear here...</span>
-                    </div>
+       <section id="optimizer" class="w-full flex flex-col justify-center items-center py-12 md:py-16 radial-gradient-background">
+    <div class="scroll-animate text-center px-4">
+        <h1 class="text-5xl md:text-8xl font-extrabold mb-4 leading-tight">Midjourney</h1>
+        <h2 class="text-4xl md:text-7xl font-bold text-center mb-8">Prompt Optimizer</h2>
+        <p class="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">Transform your simple ideas into structured, powerful Midjourney prompts that generate exactly what you envision.</p>
+    </div>
+    <div class="w-full max-w-4xl scroll-animate px-4">
+        
+        
+        <div class="bg-[#111] border border-[#222] rounded-2xl p-6 md:p-8 mb-8 radial-gradient-background">
+            <form id="promptForm">
+                <label for="userPrompt" class="block text-lg md:text-xl font-semibold mb-4">Describe your vision:</label>
+                <textarea 
+                    id="userPrompt" 
+                    class="w-full bg-[#222] border border-[#333] rounded-xl p-4 text-white resize-none focus:outline-none focus:border-blue-500 transition-colors" 
+                    rows="4" 
+                    placeholder="e.g., A student studying at a desk with books, dreaming of the future with technology and space exploration"
+                ></textarea>
+              <input type="file" id="imageFile" accept="image/*" class="mt-4 w-full"> <input type="text" id="imageUrl" placeholder="Or enter image URL" class="mt-4 w-full bg-[#222] border border-[#333] rounded-xl p-4 text-white resize-none focus:outline-none focus:border-blue-500 transition-colors"> <div class="flex flex-col sm:flex-row gap-4 mt-6">
                     <button 
-                        id="copyBtn" 
-                        class="mt-4 bg-green-600 hover:bg-green-500 text-white font-semibold py-2 px-6 rounded-full transition-colors opacity-0"
+                        type="submit"
+                        id="optimizeBtn" 
+                        class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-full transition-colors w-full sm:w-auto"
                     >
-                        Copy to Clipboard
+                        Optimize Prompt
+                    </button>
+                    <button 
+                        type="button"
+                        id="clearBtn" 
+                        class="bg-red-600 hover:bg-red-500 text-white font-semibold py-3 px-8 rounded-full transition-colors w-full sm:w-auto"
+                    >
+                        Clear
                     </button>
                 </div>
+            </form>
+        </div>
+
+        <div id="outputSection" class="bg-[#111] border border-[#222] rounded-2xl p-6 md:p-8 opacity-0 transition-opacity duration-500">
+            <h3 class="text-xl md:text-2xl font-bold mb-4 text-green-400">Optimized Prompt:</h3>
+            <div id="optimizedOutput" class="bg-[#222] border border-[#333] rounded-xl p-4 text-gray-300 leading-relaxed min-h-[120px] flex items-center">
+                <span class="text-gray-500">Your optimized prompt will appear here...</span>
             </div>
-        </section>
+            <button 
+                id="copyBtn" 
+                class="mt-4 bg-green-600 hover:bg-green-500 text-white font-semibold py-2 px-6 rounded-full transition-colors opacity-0"
+            >
+                Copy to Clipboard
+            </button>
+        </div>
+    </div>
+</section>
 
         <!-- About Section -->
         <section id="about" class="w-full flex flex-col justify-center items-center py-16 bg-black">
