@@ -200,11 +200,23 @@ section.banner {
   padding: 1rem 0;
 }
 
+/* This creates the two columns on larger screens */
 .comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
+
+/* --- Responsive Media Query --- */
+@media screen and (max-width: 768px) {
+  
+  /* This stacks the two columns into one on smaller screens */
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+  
 
 aside {
   background-color: #111;
@@ -487,3 +499,4 @@ ul, ol {
     border-radius: 0.75rem;
     border: 1px solid #222;
 }
+
