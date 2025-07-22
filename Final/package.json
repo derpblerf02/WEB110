@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@google/generative-ai": "^0.17.1",
-    "formidable": "^3.5.4"
+    "formidable": "^3.5.4",
+    "node-fetch": "^3.3.2"
   },
   "type": "module",
   "engines": {
